@@ -2,7 +2,8 @@
 Lookahead optimizer (["Lookahead Optimizer: k steps forward, 1 step back"](https://arxiv.org/abs/1907.08610)) for tensorflow
 
 ### Environment 
-This code is implemmented and tested with [tensorflow](https://www.tensorflow.org/) 1.11.0.
+This code is implemmented and tested with [tensorflow](https://www.tensorflow.org/) 1.11.0. \
+I didn't use any spetial operator, so it should also work for other version of tensorflow.
 
 ### Usage
 1. Please assert the class after all variable initialization, and initialize the BaseLoookAhead with all trainable variables.
