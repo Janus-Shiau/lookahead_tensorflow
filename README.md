@@ -14,6 +14,7 @@ from lookahead_opt import BaseLookAhead
 """
 Build your model here
 """
+
 model_vars = [v for v in tf.trainable_variables()]
 tf.global_variables_initializer().run()
 
@@ -27,7 +28,7 @@ lookahead = BaseLookAhead(model_vars)
 train_op += lookahead.get_ops()
 
 # Or just run the Session
-with tf.() as sess:
+with tf.Session() as sess:
   _ = sess.run(lookahead.get_ops())
 ```
 
