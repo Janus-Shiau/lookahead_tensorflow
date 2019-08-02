@@ -32,8 +32,24 @@ with tf.Session() as sess:
   _ = sess.run(lookahead.get_ops())
 ```
 
-### Details
-TBA.
+### Implementation Details
+
+#### Inject Lookahead to model and save specific variables
+The Lookahead is wrapped with default variable scope "lookahead". \
+After calling BaseLookAhead with specific variables, the variables will be injected to lookahead.
+
+<img src="doc/graph.png" 
+alt="Example template graph with lookahead" border="10" width="500" /></a>
+
+The BaseLookAhead will create a duplicate tf.Variables to save the slow weight. \
+A counter will be automatically create to do "k steps forward, 1 step back".
+
+<img src="doc/graph2.png" 
+alt="Example template graph with lookahead" border="10" width="400" /></a>
+
+#### Experimental results
+I have conduct experiments on a many-to-many recursive task with stacked [weight-dropped LSTM](https://arxiv.org/abs/1708.02182). \
+Using lookahead with Adam, the training loss is higher than the model without lookahead. But the validation loss with lookahead is slightly better.
 
 ### Contact & Copy Right
 Code work by Jia-Yau Shiau <jiayau.shiau@gmail.com>.
