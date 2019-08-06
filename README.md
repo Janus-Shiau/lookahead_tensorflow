@@ -21,7 +21,7 @@ tf.global_variables_initializer().run()
 
 lookahead = BaseLookAhead(model_vars, k=5, alpha=0.5)
 ```
-Arguments are define as follows: \
+Arguments are define as follows:
 > model_vars: the variables to be lookahead. [list]\
 > k: the number of steps that fast weights go forward. [int]\
 > alpha: The learning rate for merging slow to fast weight. [float]
