@@ -13,13 +13,19 @@ from lookahead_opt import BaseLookAhead
 
 """
 Build your model here
+Please also include any optimizer you need.
 """
 
 model_vars = [v for v in tf.trainable_variables()]
 tf.global_variables_initializer().run()
 
-lookahead = BaseLookAhead(model_vars)
+lookahead = BaseLookAhead(model_vars, k=5, alpha=0.5)
 ```
+Arguments are define as follows: \
+> model_vars: the variables to be lookahead. [list]\
+> k: the number of steps that fast weights go forward. [int]\
+> alpha: The learning rate for merging slow to fast weight. [float]
+
 
 2. Add the assign operator to training operation or directly run in session.
 
@@ -35,8 +41,9 @@ with tf.Session() as sess:
 ### Implementation Details
 
 #### Inject Lookahead to model and save specific variables
-The Lookahead is wrapped with default variable scope "lookahead". \
-After calling BaseLookAhead with specific variables, the variables will be injected to lookahead.
+The Lookahead is wrapped with default variable scope "lookahead".
+After calling BaseLookAhead with specific variables, the variables will be injected to lookahead.\
+Noted that, the lookahead class is totally separated from optimizer, please remember to add optimizer when creating training graph. 
 
 <img src="doc/graph.png" 
 alt="Example template graph with lookahead" border="10" width="500" /></a>
