@@ -25,7 +25,7 @@ class BaseLookAhead():
     def __init__(self, model_vars, k=5, alpha=0.5, name='lookahead'):
         """ [Args]
                 k: the difined forward step k. [int]
-                alpha: the difined learning rate for lookahead. [float]
+                alpha: the defined learning rate for lookahead. [float]
                 name: namescope. [str]
         """
         self.is_injected  = False
@@ -91,7 +91,7 @@ class BaseLookAhead():
     
     
     def _assign_list(self, list_1, list2):
-        """ Tensorflow assign function of list of tensors. """
+        """ Tensorflow assign function for list of tensors. """
         assign_results = []
         for (list_1,list2) in zip(list_1, list2):
             assign_results.append(tf.assign(list_1, list2))
