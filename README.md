@@ -58,7 +58,7 @@ And a counter will be automatically created to do "k steps forward, 1 step back"
 alt="Example template graph with lookahead" border="10" width="400" /></a>
 
 #### Experimental results
-I have conduct experiments on a many-to-many recursive task with stacked [weight-dropped LSTM](https://github.com/Janus-Shiau/6d_rot_tensorflow), proposed in ["Regularizing and Optimizing LSTM Language Models"](https://arxiv.org/abs/1708.02182). \
+I have conduct experiments on a many-to-many recursive task with stacked [weight-dropped LSTM](https://github.com/Janus-Shiau/awd-lstm-tensorflow), proposed in ["Regularizing and Optimizing LSTM Language Models"](https://arxiv.org/abs/1708.02182). \
 Using lookahead with Adam, the training loss is higher than the model without lookahead. But the validation loss with lookahead is slightly better.
 
 ### Contact & Copy Right
