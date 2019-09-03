@@ -25,9 +25,9 @@ tf.global_variables_initializer().run()
 lookahead = BaseLookAhead(model_vars, k=5, alpha=0.5)
 ```
 Arguments are define as follows:
-> model_vars: the variables to be lookahead. [list]\
-> k: the number of steps that fast weights go forward. [int]\
-> alpha: The learning rate for merging slow to fast weight. [float]
+> `model_vars`: the variables to be lookahead. [list]\
+> `k`: the number of steps that fast weights go forward. [int]\
+> `alpha`: The learning rate for merging slow to fast weight. [float]
 
 
 2. Add the assign operator to training operation or directly run in session.
@@ -44,21 +44,21 @@ with tf.Session() as sess:
 ### Implementation Details
 
 #### Inject Lookahead to model and save specific variables
-The Lookahead is wrapped with default variable scope "lookahead".
-After calling BaseLookAhead with specific variables, the variables will be injected to lookahead.\
+The Lookahead is wrapped with default `variable_scope` "lookahead".
+After calling `BaseLookAhead` with specific variables, the variables will be injected to lookahead.\
 Noted that, the lookahead class is totally separated from optimizer, please remember to add optimizer when creating training graph. 
 
 <img src="doc/graph.png" 
 alt="Example template graph with lookahead" border="10" width="500" /></a>
 
-The BaseLookAhead will create a duplicate tf.Variables to save the slow weight.
-And a counter will be automatically create to do "k steps forward, 1 step back".
+The `BaseLookAhead` will create duplicated `tf.Variables` to save the slow weight.
+And a counter will be automatically created to do "k steps forward, 1 step back".
 
 <img src="doc/graph2.png" 
 alt="Example template graph with lookahead" border="10" width="400" /></a>
 
 #### Experimental results
-I have conduct experiments on a many-to-many recursive task with stacked [weight-dropped LSTM](https://arxiv.org/abs/1708.02182). \
+I have conduct experiments on a many-to-many recursive task with stacked [weight-dropped LSTM](https://github.com/Janus-Shiau/6d_rot_tensorflow), proposed in ["Regularizing and Optimizing LSTM Language Models"](https://arxiv.org/abs/1708.02182). \
 Using lookahead with Adam, the training loss is higher than the model without lookahead. But the validation loss with lookahead is slightly better.
 
 ### Contact & Copy Right
